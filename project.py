@@ -60,8 +60,8 @@ def download_video(url, save_path):
         # save location of the video
         'outtmpl': save_path + '/%(title)s.%(ext)s',
     }
-    _id = url.strip()
-    meta = youtube_dl.YoutubeDL(ydl_opts).extract_info(_id)
+    id = url.strip()
+    youtube_dl.YoutubeDL(ydl_opts).extract_info(id)
 
 
 
