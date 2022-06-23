@@ -2,21 +2,23 @@ import os
 import subprocess
 import string
 import youtube_dl
+from pyfiglet import Figlet
+from time import sleep
 
 # Youtube Offline Downloader
 
 
 def main():
     clear_screen()
-    print('Youtube Offline Downloader')
-    print('==========================')
+    show_splash()
     print('1. Download video')
     print('2. Download Location')
     print('3. Exit')
     choice = input('Enter your choice: ')
     if choice == '1':
         url = get_url()
-        save_path = savePath()
+        savedPath = read_save_path()
+        save_path = savedPath if savedPath != '' else savePath()
         download_video(url, save_path)
     elif choice == '2':
         savePath()
@@ -28,10 +30,7 @@ def main():
 
 
 def savePath():
-    if read_save_path():
-        # path is not None
-        return read_save_path()
-    
+    clear_screen()
     # return the path to save the video
     print('Choose directory to save video:')
     print('1. Current directory')
@@ -54,8 +53,16 @@ def savePath():
     return path
 
 
-
-
+def show_splash():
+    '''
+    Display splash screen
+    '''
+    clear_screen()
+    title = 'Youtube Offline Downloader'
+    figlet = Figlet()
+    fonts = figlet.getFonts()
+    f = Figlet(font='standard')
+    print(f.renderText(title))
 
 
 
@@ -71,8 +78,10 @@ def save_path_to_file(path):
         f.write(path)
 
 def read_save_path():
-    with open('save_path.txt', 'r') as f:
-        return f.read()
+    if os.path.exists('save_path.txt'):
+        with open('save_path.txt', 'r') as f:
+            return f.read()
+    return ''
 
 
 
@@ -90,6 +99,7 @@ def red(text):
 
 # download youtube video and save it to a folder
 def download_video(url, save_path):
+    
     ydl_opts = {
         # hight quality video
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio',
