@@ -1,6 +1,5 @@
 import os
 import subprocess
-import random
 import string
 import youtube_dl
 
@@ -8,7 +7,6 @@ import youtube_dl
 
 
 def main():
-    # url = get_url()
     url = get_url()
     path = savePath()
     download_video(url, path)
@@ -16,6 +14,10 @@ def main():
 
 
 def savePath():
+    if read_save_path():
+        # path is not None
+        return read_save_path()
+    
     # return the path to save the video
     print('Choose directory to save video:')
     print('1. Current directory')
@@ -24,18 +26,38 @@ def savePath():
     print('4. Desktop')
     choice = input('Enter your choice: ')
     if choice == '1':
-        return os.getcwd()
+        path = os.getcwd()
     elif choice == '2':
-        return os.path.join(os.path.expanduser('~'), 'Downloads')
+        path = os.path.join(os.path.expanduser('~'), 'Downloads')
     elif choice == '3':
-        return os.path.join(os.path.expanduser('~'), 'Documents')
+        path = os.path.join(os.path.expanduser('~'), 'Documents')
     elif choice == '4':
-        return os.path.join(os.path.expanduser('~'), 'Desktop')
+        path = os.path.join(os.path.expanduser('~'), 'Desktop')
     else:
         print('Invalid choice')
-        return savePath()
     
+    save_path_to_file(path)
     return path
+
+
+
+
+
+
+
+
+
+
+
+
+
+def save_path_to_file(path):
+    with open('save_path.txt', 'w') as f:
+        f.write(path)
+
+def read_save_path():
+    with open('save_path.txt', 'r') as f:
+        return f.read()
 
 
 
@@ -53,7 +75,6 @@ def red(text):
 
 # download youtube video and save it to a folder
 def download_video(url, save_path):
-
     ydl_opts = {
         # hight quality video
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio',
