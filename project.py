@@ -2,13 +2,14 @@ import os
 import subprocess
 import random
 import string
+import youtube_dl
 
 # Youtube Offline Downloader
 
 
 def main():
     # url = get_url()
-    url = 'https://www.youtube.com/watch?v=Wch3gJG2GJ4'
+    url = get_url()
     path = savePath()
     download_video(url, path)
 
@@ -51,15 +52,16 @@ def red(text):
 
 
 # download youtube video and save it to a folder
-def download_video(url, path):
-    random_name = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(10))
-    
-    video_id = url.split('=')[1]
-    video_path = path + '/' + random_name + '.mp4'
-    if not os.path.exists(video_path):
-        subprocess.call(['youtube-dl', '-f', 'mp4', '-o', video_path, url])
+def download_video(url, save_path):
 
-
+    ydl_opts = {
+        # hight quality video
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio',
+        # save location of the video
+        'outtmpl': save_path + '/%(title)s.%(ext)s',
+    }
+    _id = url.strip()
+    meta = youtube_dl.YoutubeDL(ydl_opts).extract_info(_id)
 
 
 
