@@ -4,6 +4,7 @@ import string
 import youtube_dl
 from pyfiglet import Figlet
 from time import sleep
+import re
 
 # Youtube Offline Downloader
 
@@ -62,7 +63,7 @@ def show_splash():
     figlet = Figlet()
     fonts = figlet.getFonts()
     f = Figlet(font='standard')
-    print(f.renderText(title))
+    print(red(f.renderText(title)))
 
 
 
@@ -87,14 +88,25 @@ def read_save_path():
 
 
 def get_url():
-    url = input('Enter youtube url: ')
-    return url
+    while True:
+        regex = (
+            r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$")
+
+        match = re.match(regex, input('Enter youtube url: '))
+        if match:
+            return match.group()
+        elif match is None:
+            print('Invalid url')
+
 
 
 def red(text):
     # return text in red
     return '\033[31m' + text + '\033[0m'
 
+def blue(text):
+    # return text in blue
+    return '\033[34m' + text + '\033[0m'
 
 
 # download youtube video and save it to a folder
