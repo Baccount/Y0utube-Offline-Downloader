@@ -7,9 +7,23 @@ import youtube_dl
 
 
 def main():
-    url = get_url()
-    path = savePath()
-    download_video(url, path)
+    clear_screen()
+    print('Youtube Offline Downloader')
+    print('==========================')
+    print('1. Download video')
+    print('2. Download Location')
+    print('3. Exit')
+    choice = input('Enter your choice: ')
+    if choice == '1':
+        url = get_url()
+        save_path = savePath()
+        download_video(url, save_path)
+    elif choice == '2':
+        savePath()
+        main()
+    elif choice == '3':
+        print('Exiting...')
+        exit()
 
 
 
@@ -49,7 +63,8 @@ def savePath():
 
 
 
-
+def clear_screen():
+    print('\n' * 25)
 
 def save_path_to_file(path):
     with open('save_path.txt', 'w') as f:
