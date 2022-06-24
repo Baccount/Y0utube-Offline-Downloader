@@ -29,7 +29,7 @@ def main():
         savePath()
         main()
     elif choice == '3':
-        url = input('Enter the url : ')
+        url = input('Enter the playlist url : ')
         while check_url(url) is None:
             url = input('Enter the playlist url : ')
         savedPath = read_save_path()
@@ -37,7 +37,7 @@ def main():
         download_playlist(url, save_path)
     elif choice == '4':
         print('Exiting...')
-        exit()
+        exit(0)
 
 
 
@@ -174,7 +174,6 @@ def blue(text: str):
 
 # download youtube video and save it to a folder
 def download_video(url: str, save_path: str):
-    
     ydl_opts = {
         # hight quality video
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio',
