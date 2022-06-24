@@ -1,4 +1,4 @@
-from project import check_url, download_video, read_save_path, save_path_to_file
+from project import check_url, read_save_path, save_path_to_file
 
 
 def test_check_url():
@@ -14,8 +14,12 @@ def test_save_path_to_file():
     assert read_save_path() == '/home/user/Downloads'
     save_path_to_file(path='/home/user/Desktop')
     assert read_save_path() == '/home/user/Desktop'
+    # delete the file
+    save_path_to_file(path='')
 
 
-
-def test_download_video():
-    assert download_video('https://www.youtube.com/watch?v=CdNKGrKNA6Y') == True
+def test_read_save_path():
+    save_path_to_file('/home/user/Downloads')
+    assert read_save_path() == '/home/user/Downloads'
+    # delete the file
+    save_path_to_file(path='')

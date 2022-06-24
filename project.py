@@ -51,6 +51,7 @@ def savePath():
     print('3. Documents')
     print('4. Desktop')
     print('5. Custom path')
+    print('6. Exit')
     print('')
     if  defaultPath:
         print(green(f'Current Default path = {defaultPath}'))
@@ -68,6 +69,8 @@ def savePath():
         # return the user chosen path to save the video
         clear_screen()
         path = userPath()
+    elif choice == '6':
+        main()
     else:
         # reask the user to choose a directory
         savePath()
