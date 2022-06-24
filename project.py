@@ -42,18 +42,9 @@ def savePath():
     print('3. Documents')
     print('4. Desktop')
     print('5. Custom')
+    print('\n')
     if  defaultPath:
         print(red(f'Current Default path = {defaultPath}'))
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     choice = input('Enter your choice: ')
     path = ''
     if choice == '1':
@@ -64,12 +55,57 @@ def savePath():
         path = os.path.join(os.path.expanduser('~'), 'Documents')
     elif choice == '4':
         path = os.path.join(os.path.expanduser('~'), 'Desktop')
+    elif choice == '5':
+        # return the user chosen path to save the video
+        clear_screen()
+        path = userPath()
     else:
         # reask the user to choose a directory
         savePath()
     
     save_path_to_file(path)
     return path
+
+
+
+
+
+
+
+
+
+
+
+def userPath():
+    # Get user folder path and validate it
+    path = input('Enter the path: ')
+    if os.path.exists(path):
+        return path
+    else:
+        clear_screen()
+        print(red('Path does not exist'))
+        userPath()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def show_splash():
