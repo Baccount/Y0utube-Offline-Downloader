@@ -1,4 +1,4 @@
-from project import check_url, read_save_path, save_path_to_file
+from project_func import check_url, read_save_path, save_path_to_file
 
 
 def test_check_url():
