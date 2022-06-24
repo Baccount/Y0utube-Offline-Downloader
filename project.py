@@ -14,7 +14,9 @@ def main():
     show_splash()
     print('1. Download video')
     print('2. Default Download Location')
-    print('3. Exit')
+    print('3. Download Playlist')
+    print('4. Exit')
+    
     choice = input('Enter your choice: ')
     if choice == '1':
         url = input('Enter the url : ')
@@ -27,6 +29,13 @@ def main():
         savePath()
         main()
     elif choice == '3':
+        url = input('Enter the url : ')
+        while check_url(url) is None:
+            url = input('Enter the playlist url : ')
+        savedPath = read_save_path()
+        save_path = savedPath if savedPath != '' else savePath()
+        download_playlist(url, save_path)
+    elif choice == '4':
         print('Exiting...')
         exit()
 
@@ -142,6 +151,7 @@ def read_save_path():
 
 
 def check_url(url: str):
+    # check if the url is valid
         regex = (
             r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$")
 
@@ -172,6 +182,34 @@ def download_video(url: str, save_path: str):
         'outtmpl': save_path + '/%(title)s.%(ext)s',
     }
     youtube_dl.YoutubeDL(ydl_opts).extract_info(url)
+
+
+def download_playlist(url: str, save_path: str):
+    # download playlist from youtube using youtube-dl
+    
+    ydl_opts = {
+        # hight quality video
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio',
+        # save location of the video
+        'outtmpl': save_path + '/%(title)s.%(ext)s',
+        'yes-playlist': True,
+    }
+    youtube_dl.YoutubeDL(ydl_opts).extract_info(url)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

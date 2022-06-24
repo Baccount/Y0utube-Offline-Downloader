@@ -14,3 +14,8 @@ def test_save_path_to_file():
     assert read_save_path() == '/home/user/Downloads'
     save_path_to_file(path='/home/user/Desktop')
     assert read_save_path() == '/home/user/Desktop'
+
+
+
+def test_download_video():
+    assert download_video('https://www.youtube.com/watch?v=CdNKGrKNA6Y') == True
