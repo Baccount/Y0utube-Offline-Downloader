@@ -50,10 +50,10 @@ def savePath():
     print('2. Downloads')
     print('3. Documents')
     print('4. Desktop')
-    print('5. Custom')
-    print('\n')
+    print('5. Custom path')
+    print('')
     if  defaultPath:
-        print(red(f'Current Default path = {defaultPath}'))
+        print(green(f'Current Default path = {defaultPath}'))
     choice = input('Enter your choice: ')
     path = ''
     if choice == '1':
@@ -122,7 +122,7 @@ def show_splash():
     Display splash screen
     '''
     clear_screen()
-    title = 'Youtube Offline Downloader'
+    title = 'Y0utube Offline Downloader'
     figlet = Figlet()
     fonts = figlet.getFonts()
     f = Figlet(font='standard')
@@ -161,7 +161,9 @@ def check_url(url: str):
         elif match is None:
             return None
 
-
+def green(text: str):
+    # return text in green
+    return '\033[32m' + text + '\033[0m'
 
 def red(text: str):
     # return text in red
