@@ -1,4 +1,4 @@
-from project_func import check_url, green, red, blue, clear_screen, show_splash, savePath, read_save_path, download_video, download_playlist, choice1
+from project_func import check_url, green, red, blue, clear_screen, show_splash, savePath, read_save_path, download_video, download_playlist, choice1, choice3
 import sys
 import argparse as ap
 
@@ -11,6 +11,8 @@ def main():
     parser = ap.ArgumentParser(description='Youtube Offline Downloader')
     parser.add_argument('-u', '--url', help='URL of the video or playlist to download', required=False)
     parser.add_argument('-p', '--path', help='Path to save the video or playlist', required=False)
+    # playlist argument
+    parser.add_argument('-pl', '--playlist', help='URL of the playlist to download', required=False)
     
     # if the url arg is provided, then download the video
     if parser.parse_args().url:
@@ -19,6 +21,11 @@ def main():
     # if the path arg is provided, then set the path
     if parser.parse_args().path:
         savePath(parser.parse_args().path)
+    
+    # if the playlist arg is provided, then download the playlist
+    if parser.parse_args().playlist:
+        choice3(parser.parse_args().playlist)
+
     # if no arguments are passed, show the splash screen
     clear_screen()
     show_splash()
@@ -34,12 +41,7 @@ def main():
         savePath()
         main()
     elif choice == '3':
-        url = input('Enter the playlist url : ')
-        while check_url(url) is None:
-            url = input('Enter the playlist url : ')
-        savedPath = read_save_path()
-        save_path = savedPath if savedPath != '' else savePath()
-        download_playlist(url, save_path)
+        choice3()
     elif choice == '4':
         print('Exiting...')
         exit(0)

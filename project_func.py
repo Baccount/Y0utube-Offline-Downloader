@@ -14,9 +14,9 @@ def choice1(url: str = None):
         url = input('Enter the url : ')
     savedPath = read_save_path()
     save_path = savedPath if savedPath != '' else savePath()
-    download_video(url, save_path)
+    download_video(url=url, save_path=save_path)
 
-def choice2(url: str = None):
+def choice3(url: str = None):
     # download playlist
     if url is None:
         url = input('Enter the url: ')
@@ -24,7 +24,7 @@ def choice2(url: str = None):
         url = input('Enter the url : ')
     savedPath = read_save_path()
     save_path = savedPath if savedPath != '' else savePath()
-    download_playlist(url, save_path)
+    download_playlist(url=url, save_path=save_path)
 
 def savePath(path: str = None):
     # User provided path to save the video
@@ -135,8 +135,8 @@ def blue(text: str):
     return '\033[34m' + text + '\033[0m'
 
 
-# download youtube video and save it to a folder
 def download_video(url: str, save_path: str):
+    # download youtube video and save it to a folder
     ydl_opts = {
         # hight quality video
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio',
