@@ -5,6 +5,15 @@ import youtube_dl
 from pyfiglet import Figlet
 
 
+def choice1():
+    # download video
+    url = input('Enter the url : ')
+    while check_url(url) is None:
+        url = input('Enter the url : ')
+    savedPath = read_save_path()
+    save_path = savedPath if savedPath != '' else savePath()
+    download_video(url, save_path)
+
 def savePath():
     defaultPath = read_save_path()
     clear_screen()

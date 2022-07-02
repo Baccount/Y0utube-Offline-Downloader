@@ -1,10 +1,19 @@
-from project_func import check_url, green, red, blue, clear_screen, show_splash, savePath, read_save_path, download_video, download_playlist
+from project_func import check_url, green, red, blue, clear_screen, show_splash, savePath, read_save_path, download_video, download_playlist, choice1
+import sys
 
 
 
 # Youtube Offline Downloader
 
 def main():
+    # get arguments from user using argparse module
+    import argparse
+
+
+
+
+
+
     clear_screen()
     show_splash()
     print('1. Download video')
@@ -14,12 +23,7 @@ def main():
     
     choice = input('Enter your choice: ')
     if choice == '1':
-        url = input('Enter the url : ')
-        while check_url(url) is None:
-            url = input('Enter the url : ')
-        savedPath = read_save_path()
-        save_path = savedPath if savedPath != '' else savePath()
-        download_video(url, save_path)
+        choice1()
     elif choice == '2':
         savePath()
         main()
