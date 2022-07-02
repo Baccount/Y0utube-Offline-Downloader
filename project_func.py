@@ -5,23 +5,6 @@ import youtube_dl
 from pyfiglet import Figlet
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def savePath():
     defaultPath = read_save_path()
     clear_screen()
