@@ -16,6 +16,16 @@ def choice1(url: str = None):
     save_path = savedPath if savedPath != '' else savePath()
     download_video(url, save_path)
 
+def choice2(url: str = None):
+    # download playlist
+    if url is None:
+        url = input('Enter the url: ')
+    while check_url(url) is None:
+        url = input('Enter the url : ')
+    savedPath = read_save_path()
+    save_path = savedPath if savedPath != '' else savePath()
+    download_playlist(url, save_path)
+
 def savePath(path: str = None):
     # User provided path to save the video
     if path is not None:
