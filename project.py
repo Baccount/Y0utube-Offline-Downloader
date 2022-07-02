@@ -19,22 +19,6 @@ def main():
     # if the path arg is provided, then set the path
     if parser.parse_args().path:
         savePath(parser.parse_args().path)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     # if no arguments are passed, show the splash screen
     clear_screen()
     show_splash()
