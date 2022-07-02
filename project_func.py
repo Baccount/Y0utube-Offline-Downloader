@@ -1,11 +1,29 @@
 import os
 import re  # regex
+from time import sleep
 
 import youtube_dl
 from pyfiglet import Figlet
 
 
-def savePath():
+def choice1(url: str = None):
+    # download video
+    if url is None:
+        url = input('Enter the url: ')
+    while check_url(url) is None:
+        url = input('Enter the url : ')
+    savedPath = read_save_path()
+    save_path = savedPath if savedPath != '' else savePath()
+    download_video(url, save_path)
+
+def savePath(path: str = None):
+    # User provided path to save the video
+    if path is not None:
+        save_path_to_file(path)
+        clear_screen()
+        print(green('Saved new default path'))
+        sleep(1)
+        return
     defaultPath = read_save_path()
     clear_screen()
     # return the path to save the video
