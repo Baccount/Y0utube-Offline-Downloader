@@ -1,11 +1,25 @@
 import os
 import re  # regex
-import string
-import subprocess
-from time import sleep
 
 import youtube_dl
 from pyfiglet import Figlet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def savePath():
@@ -37,9 +51,9 @@ def savePath():
         clear_screen()
         path = userPath()
     elif choice == '6':
-        main()
+        return
     else:
-        # reask the user to choose a directory
+        # re-ask the user to choose a directory
         savePath()
 
     save_path_to_file(path)
@@ -63,8 +77,6 @@ def show_splash():
     '''
     clear_screen()
     title = 'Y0utube Offline Downloader'
-    figlet = Figlet()
-    fonts = figlet.getFonts()
     f = Figlet(font='standard')
     print(red(f.renderText(title)))
 

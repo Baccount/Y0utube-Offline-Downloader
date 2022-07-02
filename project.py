@@ -4,7 +4,6 @@ from project_func import check_url, green, red, blue, clear_screen, show_splash,
 
 # Youtube Offline Downloader
 
-
 def main():
     clear_screen()
     show_splash()
