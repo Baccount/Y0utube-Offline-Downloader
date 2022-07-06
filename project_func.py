@@ -64,7 +64,7 @@ def savePath(path: str = None):
         clear_screen()
         path = userPath()
     elif choice == "6":
-        return
+        return 0
     else:
         # re-ask the user to choose a directory
         savePath()
@@ -73,7 +73,7 @@ def savePath(path: str = None):
     return path
 
 
-def userPath():
+def userPath() -> str:
     # Get user folder path and validate it
     path = input("Enter the path: ")
     if os.path.exists(path):
@@ -121,17 +121,17 @@ def check_url(url: str):
         return None
 
 
-def green(text: str):
+def green(text: str) -> str:
     # return text in green
     return "\033[32m" + text + "\033[0m"
 
 
-def red(text: str):
+def red(text: str) -> str:
     # return text in red
     return "\033[31m" + text + "\033[0m"
 
 
-def blue(text: str):
+def blue(text: str) -> str:
     # return text in blue
     return "\033[34m" + text + "\033[0m"
 
