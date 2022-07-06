@@ -1,6 +1,6 @@
-import os
 import re  # regex
 from time import sleep
+import os
 
 import youtube_dl
 from pyfiglet import Figlet
@@ -148,8 +148,7 @@ def download_video(url: str, save_path: str):
 
 
 def download_playlist(url: str, save_path: str):
-    """ download playlist from youtube using youtube-dl """
-
+    # download playlist from youtube using youtube-dl
     ydl_opts = {
         # hight quality video
         "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio",
