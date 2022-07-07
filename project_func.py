@@ -1,6 +1,6 @@
+import os
 import re  # regex
 from time import sleep
-import os
 
 import youtube_dl
 from pyfiglet import Figlet
@@ -70,7 +70,7 @@ def savePath(path: str = None):
         savePath()
 
     save_path_to_file(path)
-    return path
+    return 0
 
 
 def userPath() -> str:
