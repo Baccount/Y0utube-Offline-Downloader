@@ -36,7 +36,7 @@
   <h3 align="center">Y0utube Offline Downloader</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An awesome Y0utube Offline Downloader! Pretty cool, right?
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
