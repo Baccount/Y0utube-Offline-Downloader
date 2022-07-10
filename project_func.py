@@ -7,6 +7,12 @@ from pyfiglet import Figlet
 
 
 def choice1(url: str = None):
+    """
+    It downloads the video from the given url and saves it in the given path.
+    
+    :param url: The url of the video you want to download
+    :type url: str
+    """
     # download video
     if url is None:
         url = input("Enter the url : ")
@@ -18,6 +24,12 @@ def choice1(url: str = None):
 
 
 def choice3(url: str = None):
+    """
+    > Download a playlist from youtube
+    
+    :param url: The url of the playlist
+    :type url: str
+    """
     # download playlist
     if url is None:
         url = input("Enter the url: ")
@@ -29,6 +41,13 @@ def choice3(url: str = None):
 
 
 def savePath(path: str = None):
+    """
+    It asks the user to choose a directory to save the video
+    
+    :param path: str = None
+    :type path: str
+    :return: The path to save the video
+    """
     # User provided path to save the video
     if path is not None:
         save_path_to_file(path)
@@ -74,6 +93,10 @@ def savePath(path: str = None):
 
 
 def userPath() -> str:
+    """
+    It asks the user for a path, checks if it exists, and returns it if it does
+    :return: The path that the user entered
+    """
     # Get user folder path and validate it
     path = input("Enter the path: ")
     if os.path.exists(path):
@@ -95,15 +118,28 @@ def show_splash():
 
 
 def clear_screen():
+    """
+    It prints 25 new lines
+    """
     print("\n" * 25)
 
 
 def save_path_to_file(path):
+    """
+    It opens a file called "save_path.txt" and writes the path to the file
+    
+    :param path: the path to the folder where the images are stored
+    """
     with open("save_path.txt", "w") as f:
         f.write(path)
 
 
 def read_save_path() -> str:
+    """
+    If the file save_path.txt exists, read it and return its contents. Otherwise, return an empty
+    string.
+    :return: A string
+    """
     if os.path.exists("save_path.txt"):
         with open("save_path.txt", "r") as f:
             return f.read()
@@ -111,7 +147,14 @@ def read_save_path() -> str:
 
 
 def check_url(url: str):
-    # check if the url is valid
+    """
+    It takes a string as an argument, checks if it's a valid youtube url, and returns the url if it is,
+    or None if it isn't
+    
+    :param url: The URL of the video to be downloaded
+    :type url: str
+    :return: The match object or None
+    """
     regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$"
 
     match = re.match(regex, url)
@@ -122,22 +165,47 @@ def check_url(url: str):
 
 
 def green(text: str) -> str:
-    # return text in green
+    """
+    `green` takes a string and returns a string
+    
+    :param text: the text to be colored
+    :type text: str
+    :return: The text in green.
+    """
     return "\033[32m" + text + "\033[0m"
 
 
 def red(text: str) -> str:
-    # return text in red
+    """
+    `red` takes a string and returns a string
+    
+    :param text: The text to be colored
+    :type text: str
+    :return: The text is being returned with the color red.
+    """
     return "\033[31m" + text + "\033[0m"
 
 
 def blue(text: str) -> str:
-    # return text in blue
+    """
+    `blue` takes a string and returns a string
+    
+    :param text: The text to be colored
+    :type text: str
+    :return: The text is being returned with the color blue.
+    """
     return "\033[34m" + text + "\033[0m"
 
 
 def download_video(url: str, save_path: str):
-    # download youtube video and save it to a folder
+    """
+    Download the video from the given url and save it to the given path
+    
+    :param url: the url of the video you want to download
+    :type url: str
+    :param save_path: The path where you want to save the video
+    :type save_path: str
+    """
     ydl_opts = {
         # hight quality video
         "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio",
@@ -148,6 +216,14 @@ def download_video(url: str, save_path: str):
 
 
 def download_playlist(url: str, save_path: str):
+    """
+    Download playlist from youtube using youtube-dl
+    
+    :param url: the url of the playlist
+    :type url: str
+    :param save_path: The path where you want to save the downloaded videos
+    :type save_path: str
+    """
     # download playlist from youtube using youtube-dl
     ydl_opts = {
         # hight quality video
